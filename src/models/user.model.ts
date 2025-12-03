@@ -8,7 +8,7 @@ interface IUser extends Document {
     password: string;
     refreshToken?: string;
     fullname?: string;
-    avatarUrl?: string;
+    avatar?: string;
     bio?: string;
     savedPosts?: mongoose.Types.ObjectId[];
     createdAt: Date;
@@ -41,7 +41,7 @@ const UserSchema: Schema<IUser> = new Schema(
         refreshToken: {
             type: String
         },
-        avatarUrl: {
+        avatar: {
             type: String,
             default: '',
         },

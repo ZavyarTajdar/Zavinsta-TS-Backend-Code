@@ -5,11 +5,13 @@ import { apiError } from '../utils/apiError.ts';
 import { User, IUser } from '../models/user.model.ts'; // make sure IUser is your user interface
 
 // Extend Request to include user property
-interface AuthRequest extends Request {
-    user?: IUser | null;
+declare module "express-serve-static-core" {
+  interface Request {
+    user?: IUser; // optional because some routes may not have auth
+  }
 }
 
-export const verifyJWT = asyncHandler(async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const verifyJWT = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Get token from cookies or Authorization header
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");

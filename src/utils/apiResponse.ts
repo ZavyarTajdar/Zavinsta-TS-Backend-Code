@@ -1,12 +1,12 @@
 class apiResponse {
     public statusCode: number;
-    public data: string | object;
     public message: string;
+    public data: string | object;
     public success: boolean | number | string;
     constructor(
         statusCode: number,
-        data: string | object = {}, 
-        message: string = "Success"
+        data: string | object,
+        message: string
     ) {
         this.statusCode = statusCode;
         this.data = data;
